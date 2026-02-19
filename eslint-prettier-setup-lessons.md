@@ -5,6 +5,7 @@ This document summarizes the challenges, solutions, and best practices for setti
 ---
 
 ## 1. Version Mismatches & Dependency Conflicts
+
 - **Problem:** Peer dependency conflicts between ESLint 10.x and @typescript-eslint/eslint-plugin, @typescript-eslint/parser, eslint-plugin-react.
 - **What Did Not Work:** Installing the latest versions without checking compatibility.
 - **What Works:**
@@ -15,6 +16,7 @@ This document summarizes the challenges, solutions, and best practices for setti
     ```
 
 ## 2. Config File Confusion
+
 - **Problem:** Using eslint.config.mjs (flat config) caused import errors and confusion.
 - **What Did Not Work:** Mixing .eslintrc and eslint.config.mjs.
 - **What Works:**
@@ -22,12 +24,14 @@ This document summarizes the challenges, solutions, and best practices for setti
   - Use .eslintrc.json for configuration (widely supported and stable).
 
 ## 3. TypeScript and React Warnings
+
 - **Problem:** Warnings about unsupported TypeScript version and missing React package.
 - **What Did Not Work:** Ignoring these warnings can be confusing, but they do not block linting.
 - **What Works:**
   - These are informational. Proceed unless you see real errors.
 
 ## 4. Prettier Integration
+
 - **Problem:** Formatting errors and Prettier not working with ESLint.
 - **What Did Not Work:** Not extending Prettier in ESLint config.
 - **What Works:**
@@ -48,6 +52,7 @@ This document summarizes the challenges, solutions, and best practices for setti
     ```
 
 ## 5. Formatting Issues
+
 - **Problem:** Hundreds of Prettier errors (line endings, etc.).
 - **What Works:**
   - Run:
@@ -57,6 +62,7 @@ This document summarizes the challenges, solutions, and best practices for setti
   - This auto-formats the entire codebase and resolves all errors.
 
 ## 6. CI/CD Integration
+
 - **Problem:** Workflow failed because YAML file was not formatted.
 - **What Works:**
   - Format workflow files with Prettier.
@@ -65,6 +71,7 @@ This document summarizes the challenges, solutions, and best practices for setti
 ---
 
 ## Best Practices
+
 - Always check plugin compatibility before installing/upgrading ESLint or Prettier.
 - Use .eslintrc.json for config unless you have a strong reason to use flat config.
 - Integrate Prettier with ESLint for unified error reporting.

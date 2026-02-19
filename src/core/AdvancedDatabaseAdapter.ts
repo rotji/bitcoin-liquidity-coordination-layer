@@ -1,22 +1,21 @@
 export class AdvancedDatabaseAdapter {
   private store: Map<string, any> = new Map();
 
-
   private validateId(id: string) {
     if (
-      typeof id !== 'string' ||
+      typeof id !== "string" ||
       !id ||
-      id === '__proto__' ||
-      id === 'constructor' ||
+      id === "__proto__" ||
+      id === "constructor" ||
       /[;\s]/.test(id)
     ) {
-      throw new Error('Invalid ID');
+      throw new Error("Invalid ID");
     }
   }
 
   private validateValue(value: any) {
     if (value === undefined || value === null) {
-      throw new Error('Invalid value');
+      throw new Error("Invalid value");
     }
   }
 
@@ -41,7 +40,7 @@ export class AdvancedDatabaseAdapter {
     try {
       this.validateId(id);
       this.validateValue(value);
-      if (!this.store.has(id)) throw new Error('Not found');
+      if (!this.store.has(id)) throw new Error("Not found");
       this.store.set(id, value);
       console.log(`[AdvancedDatabaseAdapter] update: ${id}`);
       return value;
@@ -54,7 +53,7 @@ export class AdvancedDatabaseAdapter {
   async delete(id: string) {
     try {
       this.validateId(id);
-      if (!this.store.has(id)) throw new Error('Not found');
+      if (!this.store.has(id)) throw new Error("Not found");
       this.store.delete(id);
       console.log(`[AdvancedDatabaseAdapter] delete: ${id}`);
       return true;
@@ -64,21 +63,31 @@ export class AdvancedDatabaseAdapter {
     }
   }
 
-  async transaction(ops: Array<{ type: 'create' | 'update' | 'delete', id: string, value?: any }>) {
+  async transaction(
+    ops: Array<{
+      type: "create" | "update" | "delete";
+      id: string;
+      value?: any;
+    }>,
+  ) {
     const backup = new Map(this.store);
     const results: any[] = [];
     try {
       for (const op of ops) {
-        if (op.type === 'create') results.push(await this.create(op.id, op.value));
-        else if (op.type === 'update') results.push(await this.update(op.id, op.value));
-        else if (op.type === 'delete') results.push(await this.delete(op.id));
-        else throw new Error('Invalid operation type');
+        if (op.type === "create")
+          results.push(await this.create(op.id, op.value));
+        else if (op.type === "update")
+          results.push(await this.update(op.id, op.value));
+        else if (op.type === "delete") results.push(await this.delete(op.id));
+        else throw new Error("Invalid operation type");
       }
       console.log(`[AdvancedDatabaseAdapter] transaction: ${ops.length} ops`);
       return { success: true, results };
     } catch (err) {
       this.store = backup;
-      console.log(`[AdvancedDatabaseAdapter] error in transaction: ${err.message}`);
+      console.log(
+        `[AdvancedDatabaseAdapter] error in transaction: ${err.message}`,
+      );
       return { success: false, error: err };
     }
   }
