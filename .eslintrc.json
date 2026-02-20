@@ -17,7 +17,16 @@
   },
   "plugins": ["@typescript-eslint", "react", "prettier"],
   "rules": {
-    "prettier/prettier": "error"
+    "prettier/prettier": "error",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/ban-ts-comment": [
+      "error",
+      {
+        "ts-ignore": false,
+        "ts-expect-error": false
+      }
+    ]
   },
   "settings": {
     "react": {
