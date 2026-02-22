@@ -1,29 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import styles from '../styles/AssetRegistry.module.css';
 
-// Placeholder for asset data
-const initialAssets = [
-  { name: 'BTC', type: 'Native', protocols: ['Lightning', 'Liquid'] },
-  { name: 'USDT', type: 'Token', protocols: ['Liquid'] },
-  { name: 'tBTC', type: 'Wrapped', protocols: ['Fedimint'] },
-];
+// Define asset type
+interface Asset {
+  name: string;
+  type: string;
+  protocols: string[];
+}
 
 export default function AssetRegistry() {
-  const [assets, setAssets] = useState(initialAssets);
-  const [newAsset, setNewAsset] = useState({ name: '', type: '', protocols: '' });
+  const [assets, setAssets] = useState<Asset[]>([]);
+  const [newAsset, setNewAsset] = useState<{ name: string; type: string; protocols: string }>({ name: '', type: '', protocols: '' });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    axios.get('/api/assets')
+      .then(res => {
+        setAssets(res.data);
+        setLoading(false);
+      })
+      .catch(() => {
+        setError('Failed to load assets');
+        setLoading(false);
+      });
+  }, []);
 
   const handleAdd = (e: React.FormEvent) => {
     e.preventDefault();
     if (!newAsset.name || !newAsset.type) return;
-    setAssets([
-      ...assets,
-      {
-        name: newAsset.name,
-        type: newAsset.type,
-        protocols: newAsset.protocols.split(',').map(p => p.trim()),
-      },
-    ]);
-    setNewAsset({ name: '', type: '', protocols: '' });
+    axios.post('/api/assets', {
+      name: newAsset.name,
+      type: newAsset.type,
+      protocols: newAsset.protocols.split(',').map(p => p.trim()),
+    })
+      .then(res => {
+        setAssets([...assets, res.data]);
+        setNewAsset({ name: '', type: '', protocols: '' });
+      })
+      .catch(() => setError('Failed to add asset'));
   };
 
   return (
@@ -50,6 +66,8 @@ export default function AssetRegistry() {
         />
         <button type="submit">Add Asset</button>
       </form>
+      {loading ? <p>Loading...</p> : null}
+      {error ? <p style={{ color: 'red' }}>{error}</p> : null}
       <table className={styles.assetTable}>
         <thead>
           <tr>
@@ -59,11 +77,11 @@ export default function AssetRegistry() {
           </tr>
         </thead>
         <tbody>
-          {assets.map((a, idx) => (
+          {(Array.isArray(assets) ? assets : []).map((a, idx) => (
             <tr key={idx}>
               <td>{a.name}</td>
               <td>{a.type}</td>
-              <td>{a.protocols.join(', ')}</td>
+              <td>{Array.isArray(a.protocols) ? a.protocols.join(', ') : a.protocols}</td>
             </tr>
           ))}
         </tbody>
