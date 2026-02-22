@@ -20,7 +20,13 @@ app.get('/health', (req, res) => {
 	res.json({ status: 'ok' });
 });
 
-// TODO: Import and wire up core logic from src/core
+import usersRoutes from './routes/users.js';
+import assetsRoutes from './routes/assets.js';
+import protocolsRoutes from './routes/protocols.js';
+
+app.use('/api/users', usersRoutes);
+app.use('/api/assets', assetsRoutes);
+app.use('/api/protocols', protocolsRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
