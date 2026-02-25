@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styles from '../styles/AnalyticsDashboard.module.css';
 
 // Temporary in-memory event store for demo
