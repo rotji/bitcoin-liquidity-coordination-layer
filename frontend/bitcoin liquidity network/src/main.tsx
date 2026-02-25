@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import styles from './styles/global.module.css'
 import App from './App.tsx'
+// WalletProvider removed
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
