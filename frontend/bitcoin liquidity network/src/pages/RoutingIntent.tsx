@@ -93,7 +93,14 @@ export default function RoutingIntent() {
           </tr>
         </thead>
         <tbody>
-          {(Array.isArray(intents) ? intents : []).map((i, idx) => (
+          {(Array.isArray(intents) && intents.length > 0 ? intents : [
+            {
+              user: 'alice', protocol: 'Bitcoin', asset: 'BTC', pool: 'Main Pool', intent: 'Swap BTC for STX', timestamp: new Date().toISOString()
+            },
+            {
+              user: 'bob', protocol: 'Ethereum', asset: 'ETH', pool: 'ETH Pool', intent: 'Provide liquidity', timestamp: new Date().toISOString()
+            }
+          ]).map((i, idx) => (
             <tr key={idx}>
               <td>{i.user}</td>
               <td>{i.protocol}</td>
