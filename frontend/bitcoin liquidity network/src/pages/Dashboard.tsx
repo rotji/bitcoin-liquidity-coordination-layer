@@ -6,10 +6,10 @@ export default function Dashboard() {
     <div className={styles.dashboard}>
       <div style={{ marginTop: '2.5rem' }}>
         <div className={styles.summaryCards}>
-          <div className={styles.card}>Total protocols indexed: <span>0</span></div>
-          <div className={styles.card}>Total liquidity observed: <span>0</span></div>
-          <div className={styles.card}>Avg pool score: <span>0</span></div>
-          <div className={styles.card}>Number of active pools: <span>0</span></div>
+          <div className={styles.card}>Total protocols indexed: <span style={{color:'#222',fontWeight:'bold',fontSize:'2rem'}}>5</span></div>
+          <div className={styles.card}>Total liquidity observed: <span style={{color:'#222',fontWeight:'bold',fontSize:'2rem'}}>$2,150,000</span></div>
+          <div className={styles.card}>Avg pool score: <span style={{color:'#222',fontWeight:'bold',fontSize:'2rem'}}>0.81</span></div>
+          <div className={styles.card}>Number of active pools: <span style={{color:'#222',fontWeight:'bold',fontSize:'2rem'}}>31</span></div>
         </div>
         <div className={styles.poolTable}>
           <h2>Liquidity Pool Table</h2>
@@ -27,7 +27,49 @@ export default function Dashboard() {
             </thead>
             <tbody>
               <tr>
-                <td colSpan={7}>No data yet</td>
+                <td>pool1 / Bitcoin</td>
+                <td>BTC</td>
+                <td>1,000,000</td>
+                <td>$43,000</td>
+                <td>0.92</td>
+                <td>High</td>
+                <td>Low</td>
+              </tr>
+              <tr>
+                <td>pool2 / Ethereum</td>
+                <td>ETH</td>
+                <td>500,000</td>
+                <td>$3,200</td>
+                <td>0.67</td>
+                <td>Medium</td>
+                <td>Medium</td>
+              </tr>
+              <tr>
+                <td>pool3 / Stacks</td>
+                <td>STX</td>
+                <td>250,000</td>
+                <td>$2.5</td>
+                <td>0.51</td>
+                <td>Low</td>
+                <td>Low</td>
+              </tr>
+              <tr>
+                <td>pool4 / RSK</td>
+                <td>RBTC</td>
+                <td>120,000</td>
+                <td>$43,050</td>
+                <td>0.33</td>
+                <td>Low</td>
+                <td>High</td>
+              </tr>
+              <tr>
+                <td>pool5 / Liquid</td>
+                <td>L-BTC</td>
+                <td>300,000</td>
+                <td>$43,000</td>
+                <td>0.78</td>
+                <td>Medium</td>
+                <td>Medium</td>
               </tr>
             </tbody>
           </table>
@@ -42,6 +84,7 @@ export default function Dashboard() {
           <h2>Quick Actions</h2>
           <input type="text" placeholder="Search pool by assets or protocol" />
           <button>Toggle View</button>
+          <div style={{marginTop:'1rem',fontWeight:'bold',fontSize:'1.2rem'}}>Get Started</div>
         </div>
       </div>
     </div>
