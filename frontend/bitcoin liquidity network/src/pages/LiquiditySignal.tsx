@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { getSignals } from '../../../src/services/LiquiditySignalService';
 import styles from '../styles/LiquiditySignal.module.css';
 
 interface LiquiditySignal {
@@ -18,9 +18,9 @@ export default function LiquiditySignal() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    axios.get('/api/liquidity-signals')
-      .then(res => {
-        setSignals(res.data);
+    getSignals()
+      .then((data: any) => {
+        setSignals(data);
         setLoading(false);
       })
       .catch(() => {
