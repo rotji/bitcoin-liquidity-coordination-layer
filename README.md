@@ -1,4 +1,4 @@
----
+BITCOIN LIQUIDITY AND COORDINATION LAYER
 
 ## Mock Data Usage & Switching
 
