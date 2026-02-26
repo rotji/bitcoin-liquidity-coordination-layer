@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { getProtocols } from '../../../src/services/ProtocolRegistryService';
 import styles from '../styles/ProtocolRegistry.module.css';
 import { useAnalytics } from '../analytics/AnalyticsContext';
 
@@ -19,9 +19,9 @@ export default function ProtocolRegistry() {
 
   useEffect(() => {
     analytics.trackEvent({ type: 'page_view', payload: { page: 'ProtocolRegistry' } });
-    axios.get('/api/protocols')
-      .then(res => {
-        setProtocols(res.data);
+    getProtocols()
+      .then((data: any) => {
+        setProtocols(data);
         setLoading(false);
       })
       .catch(() => {
@@ -33,13 +33,8 @@ export default function ProtocolRegistry() {
   const handleAdd = (e: React.FormEvent) => {
     e.preventDefault();
     if (!newProtocol.name || !newProtocol.status) return;
-    axios.post('/api/protocols', { ...newProtocol, pools: Number(newProtocol.pools) })
-      .then(res => {
-        setProtocols([...protocols, res.data]);
-        setNewProtocol({ name: '', status: '', pools: 0 });
-        analytics.trackEvent({ type: 'add_protocol', payload: { protocol: newProtocol } });
-      })
-      .catch(() => setError('Failed to add protocol'));
+    // Real API call placeholder
+    // Replace with actual API logic when backend is ready
   };
 
   return (
