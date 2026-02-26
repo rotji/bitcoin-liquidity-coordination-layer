@@ -7,7 +7,6 @@ export default function Sidebar() {
     <aside className={styles.sidebar}>
       <div className={styles.logo}>Bitcoin Liquidity Coordination Layer</div>
       <nav className={styles.navLinks}>
-        <Link to="/dashboard">Dashboard</Link>
         <Link to="/protocol-registry">Protocol Registry</Link>
         <Link to="/asset-registry">Asset Registry</Link>
         <Link to="/liquidity-signal">Liquidity Signal</Link>
