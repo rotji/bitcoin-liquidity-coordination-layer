@@ -30,8 +30,17 @@ export default function AssetRegistry() {
   const handleAdd = (e: React.FormEvent) => {
     e.preventDefault();
     if (!newAsset.name || !newAsset.type) return;
-    // Real API call placeholder
-    // Replace with actual API logic when backend is ready
+    // Demo mode: simulate upload by updating local state
+    setAssets([
+      ...assets,
+      {
+        name: newAsset.name,
+        type: newAsset.type,
+        protocols: newAsset.protocols.split(',').map(p => p.trim()),
+      },
+    ]);
+    setNewAsset({ name: '', type: '', protocols: '' });
+    setError('');
   };
 
   return (
@@ -69,7 +78,10 @@ export default function AssetRegistry() {
           </tr>
         </thead>
         <tbody>
-          {(Array.isArray(assets) ? assets : []).map((a, idx) => (
+          {(Array.isArray(assets) && assets.length > 0 ? assets : [
+            { name: 'Bitcoin', type: 'Native', protocols: ['Bitcoin', 'Stacks'] },
+            { name: 'Ethereum', type: 'Token', protocols: ['Ethereum', 'Stacks'] }
+          ]).map((a, idx) => (
             <tr key={idx}>
               <td>{a.name}</td>
               <td>{a.type}</td>
