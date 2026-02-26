@@ -33,8 +33,17 @@ export default function ProtocolRegistry() {
   const handleAdd = (e: React.FormEvent) => {
     e.preventDefault();
     if (!newProtocol.name || !newProtocol.status) return;
-    // Real API call placeholder
-    // Replace with actual API logic when backend is ready
+    // Demo mode: simulate upload by updating local state
+    setProtocols([
+      ...protocols,
+      {
+        name: newProtocol.name,
+        status: newProtocol.status,
+        pools: newProtocol.pools,
+      },
+    ]);
+    setNewProtocol({ name: '', status: '', pools: 0 });
+    setError('');
   };
 
   return (
@@ -72,7 +81,10 @@ export default function ProtocolRegistry() {
           </tr>
         </thead>
         <tbody>
-          {(Array.isArray(protocols) ? protocols : []).map((p, idx) => (
+          {(Array.isArray(protocols) && protocols.length > 0 ? protocols : [
+            { name: 'Bitcoin', status: 'Active', pools: 12 },
+            { name: 'Ethereum', status: 'Active', pools: 8 }
+          ]).map((p, idx) => (
             <tr key={idx}>
               <td>{p.name}</td>
               <td>{p.status}</td>
