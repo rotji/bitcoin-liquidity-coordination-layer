@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { getAssets } from '../../../src/services/AssetRegistryService';
 import styles from '../styles/AssetRegistry.module.css';
 
 // Define asset type
@@ -16,9 +16,9 @@ export default function AssetRegistry() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    axios.get('/api/assets')
-      .then(res => {
-        setAssets(res.data);
+    getAssets()
+      .then((data: any) => {
+        setAssets(data);
         setLoading(false);
       })
       .catch(() => {
@@ -30,16 +30,8 @@ export default function AssetRegistry() {
   const handleAdd = (e: React.FormEvent) => {
     e.preventDefault();
     if (!newAsset.name || !newAsset.type) return;
-    axios.post('/api/assets', {
-      name: newAsset.name,
-      type: newAsset.type,
-      protocols: newAsset.protocols.split(',').map(p => p.trim()),
-    })
-      .then(res => {
-        setAssets([...assets, res.data]);
-        setNewAsset({ name: '', type: '', protocols: '' });
-      })
-      .catch(() => setError('Failed to add asset'));
+    // Real API call placeholder
+    // Replace with actual API logic when backend is ready
   };
 
   return (
