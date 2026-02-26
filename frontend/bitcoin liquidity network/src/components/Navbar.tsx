@@ -32,6 +32,7 @@ export default function Navbar() {
       <div className={styles.navLinks}>
         <Link to="/">Home</Link>
         <Link to="/about">About</Link>
+        <Link to="/dashboard">Dashboard</Link>
       </div>
       <div className={styles.navLinks}>
         {address ? (
