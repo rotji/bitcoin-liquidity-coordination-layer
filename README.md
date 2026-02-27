@@ -16,6 +16,41 @@ VITE_USE_MOCK_DATA=true
 ```
 
 All major UI views (dashboard, registry, signals, intents) will display meaningful synthetic data when mock mode is enabled.
+
+---
+
+## Deployment (Frontend on Netlify)
+
+The Vite + React frontend is deployed on Netlify from the `frontend/bitcoin liquidity network` subfolder.
+
+**Build settings (Netlify UI):**
+
+- **Build command**:
+
+	```bash
+	npm --prefix "frontend/bitcoin liquidity network" install && npm --prefix "frontend/bitcoin liquidity network" run build
+	```
+
+- **Publish directory**:
+
+	```text
+	frontend/bitcoin liquidity network/dist
+	```
+
+**Environment variables (Netlify → Site settings → Environment):**
+
+- `VITE_USE_MOCK_DATA=true` (demo mode with synthetic data)
+- Add `VITE_API_URL`, `VITE_PUBLIC_URL`, etc. when backend endpoints are ready.
+
+**SPA routing:**
+
+- `frontend/bitcoin liquidity network/public/_redirects` contains:
+
+	```
+	/* /index.html 200
+	```
+
+This ensures client-side routing works correctly for all frontend routes in production.
 # Bitcoin Liquidity Coordination Layer (BLCL)
 
 [![Node.js CI](https://img.shields.io/github/workflow/status/rotji/bitcoin-liquidity-network/CI%20-%20Test%20&%20Coverage?label=Node.js%20CI)](https://github.com/rotji/bitcoin-liquidity-network/actions)
