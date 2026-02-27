@@ -17,6 +17,35 @@ export default function RoutingIntent() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
+  const effectiveIntents: RoutingIntent[] = (Array.isArray(intents) && intents.length > 0
+    ? intents
+    : [
+        {
+          user: 'alice',
+          protocol: 'Bitcoin',
+          asset: 'BTC',
+          pool: 'Main Pool',
+          intent: 'Swap BTC for STX',
+          timestamp: new Date().toISOString(),
+        },
+        {
+          user: 'bob',
+          protocol: 'Ethereum',
+          asset: 'ETH',
+          pool: 'ETH Pool',
+          intent: 'Provide liquidity',
+          timestamp: new Date().toISOString(),
+        },
+      ]);
+
+  const btcToStxIntents = effectiveIntents.filter(
+    (i) => i.asset === 'BTC' && i.intent.toLowerCase().includes('stx')
+  );
+  const totalRoutingIntents = effectiveIntents.length;
+  const totalBtcToStxCount = btcToStxIntents.length;
+  const estimatedBtcPerIntent = 0.1; // demo assumption
+  const totalBtcToStxVolume = totalBtcToStxCount * estimatedBtcPerIntent;
+
   useEffect(() => {
     axios.get('/api/routing-intents')
       .then(res => {
@@ -46,6 +75,20 @@ export default function RoutingIntent() {
   return (
     <div className={styles.intentPage}>
       <h2 className={styles.title}>Routing Intents</h2>
+      <div className={styles.summaryCards}>
+        <div className={styles.card}>
+          Total routing intents:{' '}
+          <span style={{ color: '#222', fontWeight: 'bold', fontSize: '2rem' }}>{totalRoutingIntents}</span>
+        </div>
+        <div className={styles.card}>
+          Users routing BTC → STX:{' '}
+          <span style={{ color: '#222', fontWeight: 'bold', fontSize: '2rem' }}>{totalBtcToStxCount}</span>
+        </div>
+        <div className={styles.card}>
+          Est. BTC volume BTC → STX:{' '}
+          <span style={{ color: '#222', fontWeight: 'bold', fontSize: '2rem' }}>{totalBtcToStxVolume.toFixed(2)} BTC</span>
+        </div>
+      </div>
       <form className={styles.addForm} onSubmit={handleAdd}>
         <input
           type="text"
@@ -93,14 +136,7 @@ export default function RoutingIntent() {
           </tr>
         </thead>
         <tbody>
-          {(Array.isArray(intents) && intents.length > 0 ? intents : [
-            {
-              user: 'alice', protocol: 'Bitcoin', asset: 'BTC', pool: 'Main Pool', intent: 'Swap BTC for STX', timestamp: new Date().toISOString()
-            },
-            {
-              user: 'bob', protocol: 'Ethereum', asset: 'ETH', pool: 'ETH Pool', intent: 'Provide liquidity', timestamp: new Date().toISOString()
-            }
-          ]).map((i, idx) => (
+          {effectiveIntents.map((i, idx) => (
             <tr key={idx}>
               <td>{i.user}</td>
               <td>{i.protocol}</td>
