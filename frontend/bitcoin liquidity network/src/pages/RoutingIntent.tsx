@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import styles from '../styles/RoutingIntent.module.css';
-
-interface RoutingIntent {
-  user: string;
-  protocol: string;
-  asset: string;
-  pool: string;
-  intent: string;
-  timestamp: string;
-}
+import {
+  getRoutingIntents,
+  createRoutingIntent,
+  type RoutingIntent,
+} from '../../../src/services/RoutingIntentService';
 
 export default function RoutingIntent() {
   const [intents, setIntents] = useState<RoutingIntent[]>([]);
@@ -17,26 +12,10 @@ export default function RoutingIntent() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  const effectiveIntents: RoutingIntent[] = (Array.isArray(intents) && intents.length > 0
-    ? intents
-    : [
-        {
-          user: 'alice',
-          protocol: 'Bitcoin',
-          asset: 'BTC',
-          pool: 'Main Pool',
-          intent: 'Swap BTC for STX',
-          timestamp: new Date().toISOString(),
-        },
-        {
-          user: 'bob',
-          protocol: 'Ethereum',
-          asset: 'ETH',
-          pool: 'ETH Pool',
-          intent: 'Provide liquidity',
-          timestamp: new Date().toISOString(),
-        },
-      ]);
+  const effectiveIntents: RoutingIntent[] =
+    Array.isArray(intents) && intents.length > 0
+      ? intents
+      : [];
 
   const btcToStxIntents = effectiveIntents.filter(
     (i) => i.asset === 'BTC' && i.intent.toLowerCase().includes('stx')
@@ -47,9 +26,9 @@ export default function RoutingIntent() {
   const totalBtcToStxVolume = totalBtcToStxCount * estimatedBtcPerIntent;
 
   useEffect(() => {
-    axios.get('/api/routing-intents')
-      .then(res => {
-        setIntents(res.data);
+    getRoutingIntents()
+      .then((data) => {
+        setIntents(data);
         setLoading(false);
       })
       .catch(() => {
@@ -61,12 +40,15 @@ export default function RoutingIntent() {
   const handleAdd = (e: React.FormEvent) => {
     e.preventDefault();
     if (!newIntent.user || !newIntent.protocol || !newIntent.asset || !newIntent.pool || !newIntent.intent) return;
-    axios.post('/api/routing-intents', {
-      ...newIntent,
-      timestamp: new Date().toISOString(),
+    createRoutingIntent({
+      user: newIntent.user,
+      protocol: newIntent.protocol,
+      asset: newIntent.asset,
+      pool: newIntent.pool,
+      intent: newIntent.intent,
     })
-      .then(res => {
-        setIntents([...intents, res.data]);
+      .then((created) => {
+        setIntents([...intents, created]);
         setNewIntent({ user: '', protocol: '', asset: '', pool: '', intent: '', timestamp: '' });
       })
       .catch(() => setError('Failed to add routing intent'));
