@@ -1,5 +1,6 @@
 // ProtocolRegistryService: mock/real data switching
 const USE_MOCK_DATA = import.meta.env.VITE_USE_MOCK_DATA === 'true'; // Controlled by .env
+const API_URL = import.meta.env.VITE_API_URL || '/api';
 
 const mockProtocols = [
   { id: 'btc', name: 'Bitcoin', liquidity: 1000000, status: 'Active', pools: 12 },
@@ -13,7 +14,7 @@ export async function getProtocols() {
   if (USE_MOCK_DATA) {
     return mockProtocols;
   } else {
-    const response = await fetch('/api/protocols');
+    const response = await fetch(`${API_URL}/protocols`);
     return await response.json();
   }
 }
