@@ -1,5 +1,6 @@
 // LiquiditySignalService: mock/real data switching
 const USE_MOCK_DATA = import.meta.env.VITE_USE_MOCK_DATA === 'true'; // Controlled by .env
+const API_URL = import.meta.env.VITE_API_URL || '/api';
 
 const mockSignals = [
   {
@@ -58,7 +59,7 @@ export async function getSignals() {
   if (USE_MOCK_DATA) {
     return mockSignals;
   } else {
-    const response = await fetch('/api/signals');
+    const response = await fetch(`${API_URL}/signals`);
     return await response.json();
   }
 }
