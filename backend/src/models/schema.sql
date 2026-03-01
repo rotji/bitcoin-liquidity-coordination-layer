@@ -6,16 +6,6 @@ CREATE TABLE IF NOT EXISTS users (
   created_at TIMESTAMP DEFAULT NOW()
 );
 
--- Assets table
-CREATE TABLE IF NOT EXISTS assets (
-  id SERIAL PRIMARY KEY,
-  name VARCHAR(64) NOT NULL,
-  symbol VARCHAR(16) NOT NULL,
-  type VARCHAR(32) DEFAULT 'Native',
-  protocol_id INTEGER REFERENCES protocols(id),
-  created_at TIMESTAMP DEFAULT NOW()
-);
-
 -- Protocols table
 CREATE TABLE IF NOT EXISTS protocols (
   id SERIAL PRIMARY KEY,
@@ -24,6 +14,16 @@ CREATE TABLE IF NOT EXISTS protocols (
   status VARCHAR(32) DEFAULT 'Active',
   liquidity NUMERIC DEFAULT 0,
   pools INTEGER DEFAULT 0,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+-- Assets table
+CREATE TABLE IF NOT EXISTS assets (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(64) NOT NULL,
+  symbol VARCHAR(16) NOT NULL,
+  type VARCHAR(32) DEFAULT 'Native',
+  protocol_id INTEGER REFERENCES protocols(id),
   created_at TIMESTAMP DEFAULT NOW()
 );
 
