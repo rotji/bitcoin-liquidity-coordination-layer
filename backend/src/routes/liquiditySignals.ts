@@ -1,8 +1,5 @@
 import { Router } from 'express';
-import {
-  getLiquiditySignals,
-  postLiquiditySignal,
-} from '../controllers/liquiditySignals.js';
+import { getLiquiditySignals, postLiquiditySignal } from '../controllers/liquiditySignals';
 
 const router = Router();
 
