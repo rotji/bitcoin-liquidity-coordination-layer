@@ -1,4 +1,6 @@
 <h1>✅ Coding Best Practices Checklist</h1>
+...existing code...
+<h1>✅ Coding Best Practices Checklist</h1>
 
 <button id="copyBtn">Copy All Checklist</button>
 
@@ -35,7 +37,7 @@
 - Consider SSR for performance.
 - Network Performance Optimization (e.g., caching, CDN).
 
-🪝 React Hooks Best Practices
+🦝 React Hooks Best Practices
 - Keep React State Immutable.
 - Don't use useState for everything; consider server state (React Query), URL state (useLocation), or localStorage.
 - Compute derived values without extra state or effects.
@@ -79,7 +81,7 @@
 - Implement CSRF protection if applicable.
 - Limit detailed error messages in production.
 
-🗄️ Database (MongoDB Atlas) Best Practices
+📄 Database (MongoDB Atlas) Best Practices
 - Define schemas and validation with Mongoose.
 - Index frequently queried fields.
 - Use lean queries when methods are not needed.
@@ -103,138 +105,138 @@
 </pre>
 
 <section>
-  <h2>🧠 Core Principles</h2>
-  <ul>
-    <li>One Centralized Reusable Logic: Write functions/utilities in a single place and reuse them throughout the app.</li>
-    <li>Avoid Hardcoding — Use Constants: Store values like URLs, strings, and keys in a constants file or .env file.</li>
-  </ul>
+	<h2>🧠 Core Principles</h2>
+	<ul>
+		<li>One Centralized Reusable Logic: Write functions/utilities in a single place and reuse them throughout the app.</li>
+		<li>Avoid Hardcoding — Use Constants: Store values like URLs, strings, and keys in a constants file or .env file.</li>
+	</ul>
 </section>
 
 <section>
-  <h2>✨ Recommended Professional Practices</h2>
-  <ul>
-    <li>Keep Code DRY (Don’t Repeat Yourself): Avoid duplicating logic. Reuse functions, components, and constants.</li>
-    <li>Use Meaningful Names: Use clear, descriptive names for variables, functions, and files.</li>
-    <li>Write Small, Focused Functions: Each function should do one thing well.</li>
-    <li>Consistent Code Formatting: Use a linter (e.g., ESLint) and formatter (e.g., Prettier).</li>
-    <li>Use CSS Modules (e.g., ComponentName.module.css): Each component and page should have its own module.css file for scoped, maintainable styles where necessary.</li>
-    <li>Handle Errors Gracefully: Use proper error handling (try-catch, fallback logic, user-friendly messages).</li>
-    <li>Comment Why, Not What: Explain why something is done, not just what it does.</li>
-    <li>Organize Files and Folders Clearly: Use a logical structure (/components, /utils, /services, /constants).</li>
-    <li>Use Environment Variables: Store sensitive or environment-specific values in .env.</li>
-    <li>Version Control with Git: Use clear commit messages and commit regularly.</li>
-    <li>Write Tests (When Applicable): Add unit/integration tests to improve reliability and support refactoring.</li>
-    <li>Keep It Simple (KISS Principle): Avoid unnecessary complexity. Solve the problem in the simplest way possible.</li>
-    <li>Avoid Global Variables: Minimize use of global state to prevent conflicts and hard-to-find bugs.</li>
-    <li>Code Reviews and Pair Programming: Collaborate with others, get feedback, and improve together.</li>
-  </ul>
+	<h2>✨ Recommended Professional Practices</h2>
+	<ul>
+		<li>Keep Code DRY (Don’t Repeat Yourself): Avoid duplicating logic. Reuse functions, components, and constants.</li>
+		<li>Use Meaningful Names: Use clear, descriptive names for variables, functions, and files.</li>
+		<li>Write Small, Focused Functions: Each function should do one thing well.</li>
+		<li>Consistent Code Formatting: Use a linter (e.g., ESLint) and formatter (e.g., Prettier).</li>
+		<li>Use CSS Modules (e.g., ComponentName.module.css): Each component and page should have its own module.css file for scoped, maintainable styles where necessary.</li>
+		<li>Handle Errors Gracefully: Use proper error handling (try-catch, fallback logic, user-friendly messages).</li>
+		<li>Comment Why, Not What: Explain why something is done, not just what it does.</li>
+		<li>Organize Files and Folders Clearly: Use a logical structure (/components, /utils, /services, /constants).</li>
+		<li>Use Environment Variables: Store sensitive or environment-specific values in .env.</li>
+		<li>Version Control with Git: Use clear commit messages and commit regularly.</li>
+		<li>Write Tests (When Applicable): Add unit/integration tests to improve reliability and support refactoring.</li>
+		<li>Keep It Simple (KISS Principle): Avoid unnecessary complexity. Solve the problem in the simplest way possible.</li>
+		<li>Avoid Global Variables: Minimize use of global state to prevent conflicts and hard-to-find bugs.</li>
+		<li>Code Reviews and Pair Programming: Collaborate with others, get feedback, and improve together.</li>
+	</ul>
 </section>
 
 <section>
-  <h2>⚛️ React Performance Best Practices</h2>
-  <ul>
-    <li>Avoid Anonymous Functions in JSX.</li>
-    <li>Use memo and useCallback hooks to optimize renders.</li>
-    <li>Lazy Load Components and implement Code Splitting.</li>
-    <li>Optimize Re-renders by managing dependencies.</li>
-    <li>Use React Profiler to identify bottlenecks.</li>
-    <li>Use Debouncing and Throttling for expensive events.</li>
-    <li>Optimize Images for performance and size.</li>
-    <li>Use Virtualization (e.g., react-window) for large lists.</li>
-    <li>Reduce Bundle Size with tree shaking and dynamic imports.</li>
-    <li>Consider SSR for performance.</li>
-    <li>Network Performance Optimization (e.g., caching, CDN).</li>
-  </ul>
+	<h2>⚛️ React Performance Best Practices</h2>
+	<ul>
+		<li>Avoid Anonymous Functions in JSX.</li>
+		<li>Use memo and useCallback hooks to optimize renders.</li>
+		<li>Lazy Load Components and implement Code Splitting.</li>
+		<li>Optimize Re-renders by managing dependencies.</li>
+		<li>Use React Profiler to identify bottlenecks.</li>
+		<li>Use Debouncing and Throttling for expensive events.</li>
+		<li>Optimize Images for performance and size.</li>
+		<li>Use Virtualization (e.g., react-window) for large lists.</li>
+		<li>Reduce Bundle Size with tree shaking and dynamic imports.</li>
+		<li>Consider SSR for performance.</li>
+		<li>Network Performance Optimization (e.g., caching, CDN).</li>
+	</ul>
 </section>
 
 <section>
-  <h2>🪝 React Hooks Best Practices</h2>
-  <ul>
-    <li>Keep React State Immutable.</li>
-    <li>Don't use useState for everything; consider server state (React Query), URL state (useLocation), or localStorage.</li>
-    <li>Compute derived values without extra state or effects.</li>
-    <li>Use unique keys (e.g., crypto-random UUID).</li>
-    <li>Never forget dependencies in useEffect; useEffect should be last in your hooks list.</li>
-  </ul>
+	<h2>🦝 React Hooks Best Practices</h2>
+	<ul>
+		<li>Keep React State Immutable.</li>
+		<li>Don't use useState for everything; consider server state (React Query), URL state (useLocation), or localStorage.</li>
+		<li>Compute derived values without extra state or effects.</li>
+		<li>Use unique keys (e.g., crypto-random UUID).</li>
+		<li>Never forget dependencies in useEffect; useEffect should be last in your hooks list.</li>
+	</ul>
 </section>
 
 <section>
-  <h2>🖥️ Responsive Design Best Practices</h2>
-  <ul>
-    <li>Use flexible layouts (Flexbox/Grid).</li>
-    <li>Use relative units (%, rem, em) instead of fixed px.</li>
-    <li>Test on multiple devices and screen sizes (mobile, tablet, desktop).</li>
-    <li>Use CSS media queries to adapt UI.</li>
-    <li>Optimize touch targets for mobile.</li>
-    <li>Use viewport meta tag properly.</li>
-    <li>Optimize images for different screen densities.</li>
-    <li>Avoid horizontal scrolling.</li>
-    <li>Use mobile-first design approach.</li>
-  </ul>
+	<h2>🖥️ Responsive Design Best Practices</h2>
+	<ul>
+		<li>Use flexible layouts (Flexbox/Grid).</li>
+		<li>Use relative units (%, rem, em) instead of fixed px.</li>
+		<li>Test on multiple devices and screen sizes (mobile, tablet, desktop).</li>
+		<li>Use CSS media queries to adapt UI.</li>
+		<li>Optimize touch targets for mobile.</li>
+		<li>Use viewport meta tag properly.</li>
+		<li>Optimize images for different screen densities.</li>
+		<li>Avoid horizontal scrolling.</li>
+		<li>Use mobile-first design approach.</li>
+	</ul>
 </section>
 
 <section>
-  <h2>🔧 Backend (Node.js / Express) & RESTful API Best Practices</h2>
-  <ul>
-    <li>Organize routes, controllers, services, models separately.</li>
-    <li>Use environment variables for config and secrets.</li>
-    <li>Modularize code with single responsibility functions.</li>
-    <li>Centralized error handling middleware with proper HTTP status codes.</li>
-    <li>Use async/await; avoid callback hell.</li>
-    <li>Validate and sanitize input data (Joi, express-validator).</li>
-    <li>Implement logging (Winston, Morgan).</li>
-    <li>Follow RESTful endpoint conventions (GET, POST, PUT, DELETE).</li>
-    <li>Implement pagination and filtering.</li>
-    <li>Use rate limiting and throttling.</li>
-    <li>Secure APIs with JWT/OAuth authentication and authorization.</li>
-    <li>Use Helmet and CORS for security.</li>
-    <li>API versioning for backward compatibility.</li>
-    <li>Document APIs (OpenAPI/Swagger).</li>
-    <li>Use Postman/Insomnia for manual API testing.</li>
-    <li>Graceful error handling and logging.</li>
-  </ul>
+	<h2>🔧 Backend (Node.js / Express) & RESTful API Best Practices</h2>
+	<ul>
+		<li>Organize routes, controllers, services, models separately.</li>
+		<li>Use environment variables for config and secrets.</li>
+		<li>Modularize code with single responsibility functions.</li>
+		<li>Centralized error handling middleware with proper HTTP status codes.</li>
+		<li>Use async/await; avoid callback hell.</li>
+		<li>Validate and sanitize input data (Joi, express-validator).</li>
+		<li>Implement logging (Winston, Morgan).</li>
+		<li>Follow RESTful endpoint conventions (GET, POST, PUT, DELETE).</li>
+		<li>Implement pagination and filtering.</li>
+		<li>Use rate limiting and throttling.</li>
+		<li>Secure APIs with JWT/OAuth authentication and authorization.</li>
+		<li>Use Helmet and CORS for security.</li>
+		<li>API versioning for backward compatibility.</li>
+		<li>Document APIs (OpenAPI/Swagger).</li>
+		<li>Use Postman/Insomnia for manual API testing.</li>
+		<li>Graceful error handling and logging.</li>
+	</ul>
 </section>
 
 <section>
-  <h2>🛡️ Backend Security</h2>
-  <ul>
-    <li>Sanitize inputs to prevent injections.</li>
-    <li>Hash passwords securely (bcrypt).</li>
-    <li>Use HTTPS in production.</li>
-    <li>Handle exceptions gracefully; do not leak sensitive info.</li>
-    <li>Implement CSRF protection if applicable.</li>
-    <li>Limit detailed error messages in production.</li>
-  </ul>
+	<h2>🛡️ Backend Security</h2>
+	<ul>
+		<li>Sanitize inputs to prevent injections.</li>
+		<li>Hash passwords securely (bcrypt).</li>
+		<li>Use HTTPS in production.</li>
+		<li>Handle exceptions gracefully; do not leak sensitive info.</li>
+		<li>Implement CSRF protection if applicable.</li>
+		<li>Limit detailed error messages in production.</li>
+	</ul>
 </section>
 
 <section>
-  <h2>🗄️ Database (MongoDB Atlas) Best Practices</h2>
-  <ul>
-    <li>Define schemas and validation with Mongoose.</li>
-    <li>Index frequently queried fields.</li>
-    <li>Use lean queries when methods are not needed.</li>
-    <li>Project only needed fields to reduce data size.</li>
-    <li>Monitor performance via Atlas dashboard.</li>
-    <li>Use connection pooling and timeout settings.</li>
-    <li>Handle DB errors and reconnect logic.</li>
-    <li>Regular backups and disaster recovery plans.</li>
-    <li>Use environment variables for credentials.</li>
-    <li>Avoid embedding large arrays; prefer references.</li>
-  </ul>
+	<h2>📄 Database (MongoDB Atlas) Best Practices</h2>
+	<ul>
+		<li>Define schemas and validation with Mongoose.</li>
+		<li>Index frequently queried fields.</li>
+		<li>Use lean queries when methods are not needed.</li>
+		<li>Project only needed fields to reduce data size.</li>
+		<li>Monitor performance via Atlas dashboard.</li>
+		<li>Use connection pooling and timeout settings.</li>
+		<li>Handle DB errors and reconnect logic.</li>
+		<li>Regular backups and disaster recovery plans.</li>
+		<li>Use environment variables for credentials.</li>
+		<li>Avoid embedding large arrays; prefer references.</li>
+	</ul>
 </section>
 
 <section>
-  <h2>🧹 Avoiding Technical Debt</h2>
-  <ul>
-    <li>Write clean, readable, well-documented code.</li>
-    <li>Refactor regularly.</li>
-    <li>Keep dependencies up to date.</li>
-    <li>Automate testing and deployment.</li>
-    <li>Avoid premature optimization.</li>
-    <li>Review and update documentation.</li>
-    <li>Use code linters and formatters.</li>
-    <li>Regularly review and prune unused code.</li>
-  </ul>
+	<h2>🧹 Avoiding Technical Debt</h2>
+	<ul>
+		<li>Write clean, readable, well-documented code.</li>
+		<li>Refactor regularly.</li>
+		<li>Keep dependencies up to date.</li>
+		<li>Automate testing and deployment.</li>
+		<li>Avoid premature optimization.</li>
+		<li>Review and update documentation.</li>
+		<li>Use code linters and formatters.</li>
+		<li>Regularly review and prune unused code.</li>
+	</ul>
 </section>
 
 </body>
@@ -540,37 +542,37 @@ This section helps track common issues and fixes related to Vite + React + TypeS
 - [ ] Do a hard reload in the browser (`Ctrl + Shift + R`)
 - [ ] Clear browser cache if UI behaves unexpectedly
 - [ ] Delete `.vite/` cache folder (optional):
-  ```bash
-  rm -rf node_modules/.vite
-  ```
+	```bash
+	rm -rf node_modules/.vite
+	```
 - [ ] Delete `node_modules` and `package-lock.json` and reinstall:
-  ```bash
-  rm -rf node_modules package-lock.json
-  npm install
-  ```
+	```bash
+	rm -rf node_modules package-lock.json
+	npm install
+	```
 
 ---
 
 ### 🔀 React Router Debug Tips
 
 - [ ] Use `<BrowserRouter>` in main App:
-  ```tsx
-  import { BrowserRouter } from "react-router-dom";
-  <BrowserRouter> ... </BrowserRouter>;
-  ```
+	```tsx
+	import { BrowserRouter } from "react-router-dom";
+	<BrowserRouter> ... </BrowserRouter>;
+	```
 - [ ] Ensure routes match lowercase paths exactly (e.g. `/about` not `/About`)
 - [ ] Ensure components are imported with correct casing:
-  ```tsx
-  import About from "./pages/About"; // matches file name exactly
-  ```
+	```tsx
+	import About from "./pages/About"; // matches file name exactly
+	```
 - [ ] Always include a fallback route:
-  ```tsx
-  <Route path="*" element={<NotFound />} />
-  ```
+	```tsx
+	<Route path="*" element={<NotFound />} />
+	```
 
 ---
 
-### 🧱 Catch-All (404) Page Component
+### 🧑‍🤝‍🧑 Catch-All (404) Page Component
 
 Create `NotFound.tsx`:
 
@@ -593,9 +595,9 @@ To test if Vite HMR is causing issues, disable it temporarily in `vite.config.ts
 
 ```ts
 export default defineConfig({
-  server: {
-    hmr: false,
-  },
+	server: {
+		hmr: false,
+	},
 });
 ```
 
@@ -619,7 +621,7 @@ Add `vercel.json` to root:
 
 ```json
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+	"rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
 ```
 
@@ -685,9 +687,9 @@ This checklist helps ensure your code runs efficiently and doesn't slow down you
 
 - [ ] Split large components into smaller, focused ones
 - [ ] Use **code splitting** to avoid loading everything at once:
-  ```tsx
-  const LazyAbout = React.lazy(() => import("./About"));
-  ```
+	```tsx
+	const LazyAbout = React.lazy(() => import("./About"));
+	```
 - [ ] Only load third-party libraries when needed (avoid bundling huge unused code)
 - [ ] Avoid using large images — compress or use `.webp` format
 
@@ -698,9 +700,9 @@ This checklist helps ensure your code runs efficiently and doesn't slow down you
 - [ ] Use React DevTools to inspect rendering behavior
 - [ ] Use Chrome DevTools → Performance tab to analyze slowness
 - [ ] Check bundle size with:
-  ```bash
-  npm run build && npx vite build --analyze
-  ```
+	```bash
+	npm run build && npx vite build --analyze
+	```
 
 ---
 
@@ -715,10 +717,10 @@ This checklist helps ensure your code runs efficiently and doesn't slow down you
 ### 🛠️ Build Optimization (Vite)
 
 - [ ] Use production build for performance testing:
-  ```bash
-  npm run build
-  npm run preview
-  ```
+	```bash
+	npm run build
+	npm run preview
+	```
 - [ ] Minify output with terser or esbuild (default with Vite)
 - [ ] Enable tree-shaking and remove dead code
 - [ ] Use dynamic imports for infrequently visited routes or heavy libraries

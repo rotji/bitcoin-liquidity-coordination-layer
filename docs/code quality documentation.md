@@ -1,4 +1,7 @@
 Testing **code quality** isn’t one thing — it’s a **stack of checks** that tell you whether your code is correct, readable, maintainable, and safe to change.
+...existing code...
+
+Testing **code quality** isn’t one thing — it’s a **stack of checks** that tell you whether your code is correct, readable, maintainable, and safe to change.
 
 Since you mostly work with **Vite + React + TypeScript / Node**, here’s a **clear, practical system** you can apply step-by-step.
 
@@ -597,7 +600,7 @@ You now have:
 
 - A **clean quality tool stack**
 - A **repeatable workflow**
-- A **scalable foundation**
+- A **scalable foundation**.
 
 ---
 
@@ -626,8 +629,8 @@ You’re now working with a **polyglot stack**:
 
 - Frontend: Vite + React + TypeScript
 - Backend(s):
-  - Node / Express (JavaScript / TypeScript)
-  - Python (APIs, data, automation, ML, services)
+	- Node / Express (JavaScript / TypeScript)
+	- Python (APIs, data, automation, ML, services)
 
 The goal is **one quality mindset**, not two separate worlds.
 
@@ -706,12 +709,12 @@ Same discipline as backend Node.
 Basic, clean structure:
 
 - app/
-  - main.py (entry)
-  - api/
-  - services/
-  - domain/
-  - models/
-  - utils/
+	- main.py (entry)
+	- api/
+	- services/
+	- domain/
+	- models/
+	- utils/
 
 - tests/
 - pyproject.toml
@@ -766,13 +769,13 @@ Test:
 If both exist in one system:
 
 1. Define **clear ownership**
-   - Node = real-time, sockets, auth, frontend-facing
-   - Python = data, computation, pipelines, ML, background tasks
+	 - Node = real-time, sockets, auth, frontend-facing
+	 - Python = data, computation, pipelines, ML, background tasks
 
 2. Communicate via:
-   - HTTP APIs
-   - Message queues
-   - Jobs
+	 - HTTP APIs
+	 - Message queues
+	 - Jobs
 
 Never mix logic across languages randomly.
 
@@ -998,153 +1001,3 @@ If yes → Level 2 test.
 - End-to-end behavior
 - Real integrations
 - High cost, high value
-
-These tests protect **business survival**.
-
----
-
-### Files / flows that belong here
-
-**Frontend**
-
-- Login flow
-- Payment flow
-- Onboarding flow
-- Multi-step forms
-
-**Backend (Node + Python)**
-
-- Auth lifecycle
-- Transaction pipelines
-- Data processing pipelines
-- Cross-service communication
-
----
-
-### What to test
-
-1. Full user journeys
-2. Real environment behavior
-3. Failure scenarios
-4. Data integrity
-
-Minimal mocking.
-Real APIs where possible.
-
----
-
-### Example thinking
-
-> “If this breaks in production, do we lose money or trust?”
-
-If yes → Level 3 test.
-
----
-
-### Quality rule
-
-- Few tests
-- Run in CI
-- Stable, not flaky
-
----
-
-## VISUAL SUMMARY
-
-```
-LEVEL 1 — Logic correctness (many tests)
-LEVEL 2 — Behavior correctness (some tests)
-LEVEL 3 — Business safety (few tests)
-```
-
----
-
-## HOW THIS APPLIES TO PYTHON SPECIFICALLY
-
-### Python Level 1
-
-- Data transformations
-- Calculations
-- Parsing
-- Validation
-
-### Python Level 2
-
-- FastAPI / Flask endpoints
-- Service-to-service calls
-- Job handlers
-
-### Python Level 3
-
-- Data pipelines
-- Model inference pipelines
-- Long-running workflows
-- External API integrations
-
----
-
-## HOW TO DECIDE TEST LEVEL (FAST CHECK)
-
-Ask 3 questions:
-
-1. Is it pure logic? → Level 1
-2. Does it involve framework or I/O? → Level 2
-3. Does it protect money, trust, or uptime? → Level 3
-
----
-
-## COMMON TESTING MISTAKES (AVOID THESE)
-
-1. Writing Level 3 tests too early
-2. Testing implementation details
-3. Mocking everything
-4. Skipping Level 1 tests
-5. Chasing coverage numbers
-
----
-
-## YOUR IDEAL TEST DISTRIBUTION
-
-- 60–70% Level 1
-- 20–30% Level 2
-- 5–10% Level 3
-
-This gives:
-
-- Speed
-- Confidence
-- Scalability
-
----
-
-## FINAL QUALITY LOOP (FULL SYSTEM)
-
-1. Code written
-2. Type checks pass
-3. Lint passes
-4. Level 1 tests pass
-5. Level 2 tests pass
-6. Level 3 tests protect core flows
-7. Confident deployment
-
----
-
-### You now have a COMPLETE CODE QUALITY SYSTEM
-
-You can:
-
-- Judge any file’s quality
-- Decide what to test
-- Scale across JS, TS, and Python
-- Avoid over-testing and under-testing
-
----
-
-If you want next, I can:
-
-- Map **your current project files** into Level 1/2/3
-- Create a **testing checklist per level**
-- Design a **monorepo quality setup (JS + Python)**
-
-Just tell me which one you want next.
-check for code

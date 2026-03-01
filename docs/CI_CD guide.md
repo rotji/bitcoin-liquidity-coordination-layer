@@ -46,11 +46,11 @@
 ## Professional Workflow
 
 1. **Early project:**
-   - Set up basic CI/CD for tests, linting, and builds.
+	- Set up basic CI/CD for tests, linting, and builds.
 2. **As codebase grows:**
-   - Add integration tests, deployment scripts, and environment provisioning.
+	- Add integration tests, deployment scripts, and environment provisioning.
 3. **Approaching launch:**
-   - Add production deployment, rollback, versioning, and notifications.
+	- Add production deployment, rollback, versioning, and notifications.
 
 ---
 

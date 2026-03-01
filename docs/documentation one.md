@@ -1,4 +1,6 @@
 Excellent choice.
+...existing code...
+Excellent choice.
 
 You’re now aiming to build **core market infrastructure**, not an app.
 That’s exactly the kind of thing that wins ecosystem grants.
@@ -40,7 +42,7 @@ Result:
 
 ---
 
-# 🏗 What You’re Building
+# 🏗️ What You’re Building
 
 A protocol-level coordination layer that:
 
@@ -78,7 +80,7 @@ That’s strategic timing.
 
 ---
 
-# 🏗 Architecture Vision (High Level)
+# 🏗️ Architecture Vision (High Level)
 
 ### Layer 1: Liquidity Indexing Engine
 
@@ -153,14 +155,14 @@ Long-term:
 
 ---
 
-# 🛠 MVP Scope (Realistic for Grant Phase 1)
+# 🛠️ MVP Scope (Realistic for Grant Phase 1)
 
 We must avoid overbuilding.
 
 ### Phase 1 MVP:
 
 1. Liquidity indexer for:
-   - 2–3 major DEXs
+	 - 2–3 major DEXs
 
 2. Basic routing engine for swaps
 3. Public API endpoint
@@ -305,33 +307,33 @@ Everything else is optional later.
 ## 2️⃣ High-Level System Architecture
 
 ```
-            ┌───────────────────┐
-            │   Frontends       │
-            │  (Wallets, UIs)   │
-            └─────────┬─────────┘
-                      │
-              SDK / REST API
-                      │
-        ┌─────────────▼─────────────┐
-        │   BLCL Backend Services   │
-        │                           │
-        │  ┌─────────────────────┐ │
-        │  │ Liquidity Indexer   │ │
-        │  └─────────────────────┘ │
-        │  ┌─────────────────────┐ │
-        │  │ Routing Engine      │ │
-        │  └─────────────────────┘ │
-        │  ┌─────────────────────┐ │
-        │  │ Execution Planner   │ │
-        │  └─────────────────────┘ │
-        └─────────────┬─────────────┘
-                      │
-              On-chain Execution
-                      │
-      ┌───────────────▼────────────────┐
-      │  Stacks Smart Contracts        │
-      │  (DEX routers, pools, etc.)    │
-      └────────────────────────────────┘
+						┌──────────────────────┐
+						│   Frontends       │
+						│  (Wallets, UIs)   │
+						└───────────────┬────┘
+											│
+							SDK / REST API
+											│
+				┌─────────────▼─────────────┐
+				│   BLCL Backend Services   │
+				│                           │
+				│  ┌──────────────────────┐ │
+				│  │ Liquidity Indexer   │ │
+				│  └──────────────────────┘ │
+				│  ┌──────────────────────┐ │
+				│  │ Routing Engine      │ │
+				│  └──────────────────────┘ │
+				│  ┌──────────────────────┐ │
+				│  │ Execution Planner   │ │
+				│  └──────────────────────┘ │
+				└─────────────┬─────────────┘
+											│
+							On-chain Execution
+											│
+			┌─────────────────────────────┐
+			│  Stacks Smart Contracts        │
+			│  (DEX routers, pools, etc.)    │
+			└─────────────────────────────┘
 ```
 
 ---
@@ -364,22 +366,22 @@ Everything else is optional later.
 
 ## 4️⃣ Core Component Breakdown (Build Order Matters)
 
-### 🧱 Component 1: Liquidity Indexer (Build First)
+### 🦡 Component 1: Liquidity Indexer (Build First)
 
 This is your foundation.
 
 #### What it does:
 
 - Index sBTC pools from:
-  - ALEX
-  - Velar
-  - BitFlow (start with 1–2)
+	- ALEX
+	- Velar
+	- BitFlow (start with 1–2)
 
 - Track:
-  - Pool reserves
-  - Fees
-  - Prices
-  - Depth
+	- Pool reserves
+	- Fees
+	- Prices
+	- Depth
 
 #### How:
 
@@ -543,3 +545,4 @@ To move **cleanly** into implementation, we must answer **one question**:
 Both are valid — but order matters.
 
 What do you choose?
+
