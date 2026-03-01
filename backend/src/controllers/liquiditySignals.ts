@@ -2,7 +2,7 @@ import type { Request, Response } from 'express';
 import {
   getAllLiquiditySignals,
   createLiquiditySignal,
-} from '../services/liquiditySignalsService.js';
+} from '../services/liquiditySignalsService';
 
 export const getLiquiditySignals = async (req: Request, res: Response) => {
   try {
