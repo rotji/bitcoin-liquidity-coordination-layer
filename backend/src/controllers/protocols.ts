@@ -1,5 +1,5 @@
 import type { Request, Response } from 'express';
-import { getAllProtocols, createProtocol as createProtocolService } from '../services/protocolsService.js';
+import { getAllProtocols, createProtocol as createProtocolService } from '../services/protocolsService';
 
 export const getProtocols = async (req: Request, res: Response) => {
   try {
