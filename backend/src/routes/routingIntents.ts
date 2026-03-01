@@ -2,7 +2,7 @@ import { Router } from 'express';
 import {
   getRoutingIntents,
   postRoutingIntent,
-} from '../controllers/routingIntents.js';
+} from '../controllers/routingIntents';
 
 const router = Router();
 
