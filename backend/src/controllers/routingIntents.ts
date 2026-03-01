@@ -2,7 +2,7 @@ import type { Request, Response } from 'express';
 import {
   getAllRoutingIntents,
   createRoutingIntent,
-} from '../services/routingIntentsService.js';
+} from '../services/routingIntentsService';
 
 export const getRoutingIntents = async (req: Request, res: Response) => {
   try {
