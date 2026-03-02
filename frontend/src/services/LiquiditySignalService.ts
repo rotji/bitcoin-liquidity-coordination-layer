@@ -1,3 +1,21 @@
+// Add signal creation (POST) function
+export async function createLiquiditySignal(signal: { protocol: string; asset: string; pool: string; liquidity: number; slippage: number; risk: string }) {
+  if (USE_MOCK_DATA) {
+    const newSignal = { ...signal, id: `signal${mockSignals.length + 1}`, timestamp: new Date().toISOString() };
+    mockSignals.push(newSignal);
+    return newSignal;
+  } else {
+    const response = await fetch(`${API_URL}/signals`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(signal),
+    });
+    if (!response.ok) {
+      throw new Error('Failed to create signal');
+    }
+    return await response.json();
+  }
+}
 // LiquiditySignalService: mock/real data switching
 const USE_MOCK_DATA = import.meta.env.VITE_USE_MOCK_DATA === 'true'; // Controlled by .env
 const API_URL = import.meta.env.VITE_API_URL || '/api';
