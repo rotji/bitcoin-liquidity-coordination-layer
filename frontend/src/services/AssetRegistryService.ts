@@ -18,3 +18,23 @@ export async function getAssets() {
     return await response.json();
   }
 }
+
+// Add asset registration (POST) function
+export async function createAsset(asset: { name: string; symbol: string; protocolId: number; poolId?: number }) {
+  if (USE_MOCK_DATA) {
+    // Simulate adding to mockAssets
+    const newAsset = { ...asset, id: asset.symbol.toLowerCase(), price: 0, type: 'Native', protocols: [] };
+    mockAssets.push(newAsset);
+    return newAsset;
+  } else {
+    const response = await fetch(`${API_URL}/assets`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(asset),
+    });
+    if (!response.ok) {
+      throw new Error('Failed to create asset');
+    }
+    return await response.json();
+  }
+}
