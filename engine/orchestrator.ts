@@ -27,6 +27,57 @@ if (!content.includes("try") || !content.includes("catch")) {
   console.log("✅ Error handling detected.");
 }
 
+
+// --- Frontend Analysis ---
+const frontendFilePath = path.join(__dirname, "../frontend/bitcoin liquidity network/src/App.tsx");
+let frontendContent = "";
+try {
+  frontendContent = fs.readFileSync(frontendFilePath, "utf-8");
+  report += "\nFRONTEND ANALYSIS\n";
+  report += "=================\n\n";
+  // Simple rule: check if useEffect exists
+  if (!frontendContent.includes("useEffect")) {
+    report += "⚠️ No useEffect detected in App.tsx.\n";
+    console.log("⚠️ WARNING: No useEffect detected in App.tsx.");
+  } else {
+    report += "✅ useEffect detected in App.tsx.\n";
+    console.log("✅ useEffect detected in App.tsx.");
+  }
+} catch (err) {
+  report += "\nFRONTEND ANALYSIS\n";
+  report += "=================\n\n";
+  report += "⚠️ Could not read App.tsx for analysis.\n";
+  console.log("⚠️ Could not read App.tsx for analysis.");
+}
+
+
+// --- Engineering Score ---
+let score = 0;
+// Backend scoring
+if (content.includes("try") && content.includes("catch")) score += 25;
+if (content.includes("async")) score += 25;
+// Frontend scoring
+if (frontendContent.includes("useEffect")) score += 25;
+if (frontendContent.includes("fetch")) score += 25;
+
+report += "\nENGINEERING SCORE\n";
+report += "=================\n\n";
+report += `Score: ${score} / 100\n`;
+
+
+// --- Score History Tracking ---
+const historyPath = path.join(__dirname, "history.json");
+let history = [];
+if (fs.existsSync(historyPath)) {
+  const existing = fs.readFileSync(historyPath, "utf-8");
+  history = JSON.parse(existing);
+}
+history.push({
+  date: new Date().toISOString(),
+  score
+});
+fs.writeFileSync(historyPath, JSON.stringify(history, null, 2));
+
 const reportPath = path.join(__dirname, "report.txt");
 fs.writeFileSync(reportPath, report);
 

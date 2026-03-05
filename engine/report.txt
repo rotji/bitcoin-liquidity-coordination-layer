@@ -2,3 +2,13 @@ ENGINEERING REPORT
 ===================
 
 ✅ Error handling detected in backend routes.
+
+FRONTEND ANALYSIS
+=================
+
+⚠️ No useEffect detected in App.tsx.
+
+ENGINEERING SCORE
+=================
+
+Score: 25 / 100
