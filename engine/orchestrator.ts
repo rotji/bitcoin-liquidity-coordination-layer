@@ -15,3 +15,19 @@ console.log("🔎 Reading backend file...\n");
 const content = fs.readFileSync(backendFilePath, "utf-8");
 
 console.log(content);
+
+
+let report = "ENGINEERING REPORT\n";
+report += "===================\n\n";
+if (!content.includes("try") || !content.includes("catch")) {
+  report += "⚠️ No error handling detected in backend routes.\n";
+  console.log("⚠️ WARNING: No error handling detected in backend routes.");
+} else {
+  report += "✅ Error handling detected in backend routes.\n";
+  console.log("✅ Error handling detected.");
+}
+
+const reportPath = path.join(__dirname, "report.txt");
+fs.writeFileSync(reportPath, report);
+
+console.log("📄 Report generated at /engine/report.txt");
