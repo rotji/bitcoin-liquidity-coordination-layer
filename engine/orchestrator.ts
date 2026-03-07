@@ -4,9 +4,16 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { readBackendFile, readFrontendFile } from "./observer.ts";
 import { analyzeBackend, analyzeFrontend, calculateScore } from "./evaluator.ts";
+import { suggestNextImprovement } from "./planner.ts";
+import { addErrorHandlingToBackend } from "./executor.ts";
+import { loadUserConfig } from "./config.ts";
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+// --- Load User Config ---
+const userConfig = loadUserConfig();
 
 
 console.log("🔎 Reading backend and frontend files...\n");
@@ -118,8 +125,65 @@ if (latestAiResponseFile) {
   checklist += "No previous AI response file found to compare.\n";
 }
 
+
 const checklistPath = path.join(__dirname, "checklist.txt");
 fs.writeFileSync(checklistPath, checklist);
+
+
+// --- Planner Suggestion ---
+const nextImprovement = suggestNextImprovement(__dirname);
+console.log(`🗂️  ${nextImprovement}`);
+
+// --- Executor (Optional Automation) ---
+import readline from "readline";
+
+
+async function confirmAndExecute() {
+  if (nextImprovement.toLowerCase().includes("error handling")) {
+    if (userConfig.autoExecute) {
+      const execResult = addErrorHandlingToBackend(__dirname);
+      console.log(`⚡ Executor: ${execResult}`);
+    } else {
+      const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+      });
+      await new Promise<void>((resolve) => {
+        rl.question("⚠️  Do you want to auto-apply error handling to your backend? (yes/no): ", (answer) => {
+          if (answer.trim().toLowerCase() === "yes") {
+            const execResult = addErrorHandlingToBackend(__dirname);
+            console.log(`⚡ Executor: ${execResult}`);
+          } else {
+            console.log("Executor: Skipped code modification.");
+          }
+          rl.close();
+          resolve();
+        });
+      });
+    }
+  }
+}
+
+await confirmAndExecute();
+
+// --- AI Feedback Loop (optional) ---
+if (userConfig.aiFeedback) {
+  // --- Basic AI Feedback Loop Example ---
+  // This is a placeholder for future logic. For now, it just reads the last score and prints a message.
+  if (history.length > 1) {
+    const prevScore = history[history.length - 2].score;
+    const currScore = history[history.length - 1].score;
+    if (currScore > prevScore) {
+      console.log("🤖 AI Feedback: Project score improved! Keep following recommendations.");
+    } else if (currScore < prevScore) {
+      console.log("🤖 AI Feedback: Project score decreased. Review recent changes.");
+    } else {
+      console.log("🤖 AI Feedback: Project score unchanged. Try a different improvement.");
+    }
+  } else {
+    console.log("🤖 AI Feedback: Not enough history for feedback.");
+  }
+}
 
 console.log("📄 Report generated at /engine/report.txt");
 console.log("📝 AI prompt generated at /engine/ai_prompt.txt");
