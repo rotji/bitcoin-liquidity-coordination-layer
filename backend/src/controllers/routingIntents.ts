@@ -15,9 +15,12 @@ export const getRoutingIntents = async (req: Request, res: Response) => {
 
 export const postRoutingIntent = async (req: Request, res: Response) => {
   try {
+    console.log('postRoutingIntent request body:', req.body);
     const intent = await createRoutingIntent(req.body);
+    console.log('postRoutingIntent result:', intent);
     res.status(201).json(intent);
   } catch (err) {
+    console.error('postRoutingIntent error:', err);
     res.status(500).json({ error: 'Failed to create routing intent' });
   }
 };

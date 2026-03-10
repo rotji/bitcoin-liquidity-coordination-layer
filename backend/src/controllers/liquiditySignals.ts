@@ -15,9 +15,12 @@ export const getLiquiditySignals = async (req: Request, res: Response) => {
 
 export const postLiquiditySignal = async (req: Request, res: Response) => {
   try {
+    console.log('postLiquiditySignal request body:', req.body);
     const signal = await createLiquiditySignal(req.body);
+    console.log('postLiquiditySignal result:', signal);
     res.status(201).json(signal);
   } catch (err) {
+    console.error('postLiquiditySignal error:', err);
     res.status(500).json({ error: 'Failed to create liquidity signal' });
   }
 };

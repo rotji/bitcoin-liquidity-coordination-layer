@@ -7,10 +7,27 @@ import { analyzeBackend, analyzeFrontend, calculateScore } from "./evaluator.ts"
 import { suggestNextImprovement } from "./planner.ts";
 import { addErrorHandlingToBackend } from "./executor.ts";
 import { loadUserConfig } from "./config.ts";
+import { testEndpoint, isValidLiquidityData } from "./httpTester.ts";
+
 
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+// --- Configurable list of backend API endpoints to test ---
+// These are the actual endpoints found in the backend codebase
+const backendApiEndpoints = [
+  { url: "http://localhost:4000/api/users", method: "GET" },
+  { url: "http://localhost:4000/api/users", method: "POST" },
+  { url: "http://localhost:4000/api/assets", method: "GET" },
+  { url: "http://localhost:4000/api/assets", method: "POST" },
+  { url: "http://localhost:4000/api/protocols", method: "GET" },
+  { url: "http://localhost:4000/api/protocols", method: "POST" },
+  { url: "http://localhost:4000/api/liquidity-signals", method: "GET" },
+  { url: "http://localhost:4000/api/liquidity-signals", method: "POST" },
+  { url: "http://localhost:4000/api/routing-intents", method: "GET" },
+  { url: "http://localhost:4000/api/routing-intents", method: "POST" },
+];
 
 // --- Load User Config ---
 const userConfig = loadUserConfig();
@@ -22,12 +39,51 @@ const frontendContent = readFrontendFile(__dirname);
 
 console.log(content);
 
+
 let report = "ENGINEERING REPORT\n";
 report += "===================\n\n";
 report += analyzeBackend(content) + "\n";
 report += "\nFRONTEND ANALYSIS\n";
 report += "=================\n\n";
 report += analyzeFrontend(frontendContent) + "\n";
+
+// --- Backend API Endpoints Test ---
+report += "\nBACKEND API ENDPOINTS TEST\n";
+report += "==========================\n";
+
+import fetch from 'node-fetch';
+
+async function runEndpointTests() {
+  for (const endpoint of backendApiEndpoints) {
+    let result;
+    try {
+      if (endpoint.method === "GET") {
+        result = await testEndpoint(endpoint.url);
+      } else if (endpoint.method === "POST") {
+        // For POST, send a minimal valid JSON body (customize as needed)
+        result = await testEndpoint(endpoint.url, undefined, { method: 'POST', body: JSON.stringify({ test: true }), headers: { 'Content-Type': 'application/json' } });
+      } else {
+        result = { endpoint: endpoint.url, success: false, message: `Unsupported method: ${endpoint.method}` };
+      }
+    } catch (err) {
+      let message = 'Unknown error';
+      if (err instanceof Error) {
+        message = err.message;
+      } else if (typeof err === 'string') {
+        message = err;
+      } else if (err && typeof err === 'object' && 'message' in err) {
+        message = (err as any).message;
+      }
+      result = { endpoint: endpoint.url, success: false, message };
+    }
+    report += `Endpoint: [${endpoint.method}] ${endpoint.url}\n`;
+    report += `  Success: ${result.success}\n`;
+    report += `  Status: ${result.status || "-"}\n`;
+    report += `  Message: ${result.message}\n\n`;
+  }
+  // Write the report after endpoint tests
+  fs.writeFileSync(reportPath, report);
+}
 
 // --- Engineering Score ---
 const score = calculateScore(content, frontendContent);
@@ -78,8 +134,12 @@ Respond with structured recommendations.
 fs.writeFileSync(aiPromptPath, aiPrompt);
 
 
+
 const reportPath = path.join(__dirname, "report.txt");
+// Write initial report (without endpoint tests yet)
 fs.writeFileSync(reportPath, report);
+// Run endpoint tests and update report
+runEndpointTests();
 
 // --- AI Response File Automation ---
 const timestamp = new Date().toISOString().replace(/[:.]/g, "-");

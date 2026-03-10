@@ -8,7 +8,60 @@ FRONTEND ANALYSIS
 
 ⚠️ No useEffect detected in App.tsx.
 
+BACKEND API ENDPOINTS TEST
+==========================
+
 ENGINEERING SCORE
 =================
 
 Score: 25 / 100
+Endpoint: [GET] http://localhost:4000/api/users
+  Success: true
+  Status: 200
+  Message: OK
+
+Endpoint: [POST] http://localhost:4000/api/users
+  Success: false
+  Status: 500
+  Message: OK
+
+Endpoint: [GET] http://localhost:4000/api/assets
+  Success: true
+  Status: 200
+  Message: OK
+
+Endpoint: [POST] http://localhost:4000/api/assets
+  Success: false
+  Status: 500
+  Message: OK
+
+Endpoint: [GET] http://localhost:4000/api/protocols
+  Success: true
+  Status: 200
+  Message: OK
+
+Endpoint: [POST] http://localhost:4000/api/protocols
+  Success: false
+  Status: 500
+  Message: OK
+
+Endpoint: [GET] http://localhost:4000/api/liquidity-signals
+  Success: true
+  Status: 200
+  Message: OK
+
+Endpoint: [POST] http://localhost:4000/api/liquidity-signals
+  Success: false
+  Status: 500
+  Message: OK
+
+Endpoint: [GET] http://localhost:4000/api/routing-intents
+  Success: true
+  Status: 200
+  Message: OK
+
+Endpoint: [POST] http://localhost:4000/api/routing-intents
+  Success: false
+  Status: 500
+  Message: OK
+

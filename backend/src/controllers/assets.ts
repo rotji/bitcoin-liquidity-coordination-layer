@@ -12,10 +12,13 @@ export const getAssets = async (req: Request, res: Response) => {
 
 export const createAsset = async (req: Request, res: Response) => {
   try {
+    console.log('createAsset request body:', req.body);
     const { name, symbol, protocolId } = req.body;
     const asset = await createAssetService(name, symbol, protocolId);
+    console.log('createAsset result:', asset);
     res.status(201).json(asset);
   } catch (err) {
+    console.error('createAsset error:', err);
     res.status(500).json({ error: 'Failed to create asset' });
   }
 };
